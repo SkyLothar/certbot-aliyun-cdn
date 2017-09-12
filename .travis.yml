@@ -1,0 +1,18 @@
+language: python
+
+python:
+    - "2.7"
+    - "3.5"
+
+install:
+    - pip install -r requirements.txt
+    - pip install -r tests/requirements.txt
+
+script:
+    - flake8 certbot_aliyun_cdn tests
+    - pylama certbot_aliyun_cdn
+    - python -m pytest --cov=certbot_aliyun_cdn --cov-report term tests
+
+after_success:
+    - pip install coveralls
+    - coveralls

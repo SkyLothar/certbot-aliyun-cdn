@@ -1,0 +1,3 @@
+certbot>=0.18.0
+arrow>=0.10.0
+requests-aliyun>=0.3.0
