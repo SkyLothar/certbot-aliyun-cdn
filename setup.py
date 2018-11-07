@@ -2,7 +2,7 @@ from codecs import open
 from setuptools import find_packages, setup
 
 
-__version__ = "0.0.1"
+__version__ = "0.1.0"
 __author__ = "SkyLothar"
 __email__ = "allothar@gmail.com"
 __url__ = "http://github.com"
