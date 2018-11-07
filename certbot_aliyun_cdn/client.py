@@ -8,7 +8,7 @@ from aliyunauth.sign_ver_1_0 import AuthBase
 from datetime import datetime
 from OpenSSL import crypto
 
-__version__ = "0.0.1"
+__version__ = "0.1.0"
 
 logger = logging.getLogger(__name__)
 
@@ -47,7 +47,8 @@ class CDN(object):
         resp = self.session.get(self.ENDPOINT, params=args)
         try:
             resj = resp.json()
-        except:
+        except BaseException:
+            logger.error("call cdn error: %s", action, exc_info=True)
             error = resp.text
         else:
             error = resj.get("Message")
@@ -65,7 +66,7 @@ class CDN(object):
             yield domain["DomainName"]
         total = resp["TotalCount"]
         page_size = resp["PageSize"]
-        if total > page_size * self.PAGE_SIZE:
+        if total > page_size * page:
             for domain in self.list_domains(page + 1):
                 yield domain
 
